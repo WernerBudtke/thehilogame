@@ -1,0 +1,12 @@
+<%- include('partials/head.ejs') %>
+<body id="bodyOptions">
+    <%- include('partials/header.ejs') %>
+    <main>
+        <div>
+            <p>Are you sure? :(</p>
+            <a href="/user/remove/<%= user._id %>"><button>DELETE ACC</button></a>
+            <% if (error) { %>
+                <p><%= error %></p>
+            <% } %>
+        </div>
+<%- include('partials/footer.ejs') %>

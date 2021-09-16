@@ -1,0 +1,28 @@
+<%- include('partials/head.ejs') %>
+<body id="bodyHighscores">
+    <%- include('partials/header.ejs') %>
+    <main>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% highscores.forEach((user, index) => { %>
+                        <tr>
+                            <td><%= index+1 %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.highscore %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <% if (error) { %>
+                <p><%= error %></p>
+            <% } %>
+        </div>
+<%- include('partials/footer.ejs') %>

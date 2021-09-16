@@ -1,0 +1,45 @@
+<%- include('partials/head.ejs') %>
+<body id="bodyHome">
+    <%- include('partials/header.ejs') %>
+    <main>
+        <div id="gameContainer">
+            <div>
+                <% if (user) { %>
+                    <p id="numeral">#:<span id="rollNumber"><%= parseInt(user.roll) %></span></p>
+                <% } else { %>
+                    <p id="numeral">#:<span id="rollNumber">5000</span></p>
+                <% } %>
+            </div>
+            <div id="btnHolder">
+                <% if (user) { %>
+                    <form action="/roll" method="POST">
+                        <input type="hidden" name="user" value="<%= user ? JSON.stringify(user) : null %>">
+                        <input type="hidden" name="whatToDo" value="higher">
+                        <button id="btnHi">HIGHER</button>
+                    </form>
+                <% } else { %>
+                    <button id="btnHi">HIGHER</button>
+                <% } %>
+                <p>-</p>
+                <% if(user){ %>
+                    <form action="/roll" method="POST">
+                        <input type="hidden" name="user" value="<%= user ? JSON.stringify(user) : null %>">
+                        <input type="hidden" name="whatToDo" value="lower">
+                        <button id="btnLo">LOWER</button>
+                    </form>
+                <% }else{ %>
+                    <button id="btnLo">LOWER</button>
+                <% } %>
+            </div>
+            <div>
+                <% if(user){ %>
+                    <p id="score">SCORE:<span><%= user.score %></span></p>
+                <% }else{ %>
+                    <p id="score">SCORE:<span>1000</span></p>
+                <% } %>
+                <% if (error) { %>
+                    <p><%= error %></p>
+                <% } %>
+            </div>
+        </div>
+<%- include('partials/footer.ejs') %>

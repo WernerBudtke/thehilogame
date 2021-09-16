@@ -1,0 +1,44 @@
+<header>
+    <div>
+        <h1>The <span class="textGreen">Hi</span>-<span class="textRed">Lo</span> Game</h1>
+    </div>
+    <nav>
+        <a class="<%= title.includes('Home') ? 'active' : null %>" href="/">Home</a>
+        <a class="<%= title.includes('Highscores') ? 'active' : null %>" href="/highscores">Highscores</a>
+        <% if(!loggedIn){ %>
+            <a class="<%= title.includes('Log In') ? 'active' : null %>" href="/login">Login</a>
+            <a class="<%= title.includes('Register') ? 'active' : null %>" href="/register">Register</a>
+        <% }else{ %>
+            <a class="<%= title.includes('Options') ? 'active' : null %>" href="/options">Options</a>
+            <a href="/logout">Log Out</a>
+        <% } %>
+    </nav>
+    <% if(user) { %>
+        <div>
+            <div>
+                <p class="userInfo">User:</p>
+                <p><%= user.username %></p>
+            </div>
+            <div>
+                <p class="userInfo">Highscore:</p>
+                <p><%= user.highscore %></p>
+            </div>
+            <div>
+                <p class="userInfo">W/R:</p>
+                <% if(user.tries === 0){ %>
+                    <p>0</p>
+                <% }else{ %>
+                    <p><%=  (user.wins/user.tries*100).toFixed(2) %>%</p>
+                <% } %>
+            </div>
+            <div>
+                <p class="userInfo">Wins:</p>
+                <p><%= user.wins %></p>
+            </div>
+            <div>
+                <p class="userInfo">Tries:</p>
+                <p><%= user.tries %></p>
+            </div>
+        </div>
+    <% } %>
+</header>
