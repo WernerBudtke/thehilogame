@@ -86,12 +86,13 @@ const userControllers = {
             if(!userFound)throw new Error('User not found')
             userFound.password = null
             req.session.loggedUser = userFound
-            res.render('index', {
-                user: userFound,
-                title: 'Home',
-                error: null,
-                loggedIn : true
-            })
+            // res.render('index', {
+            //     user: userFound,
+            //     title: 'Home',
+            //     error: null,
+            //     loggedIn : true
+            // })
+            res.redirect('/')
         }catch(e){
             res.render('index', {
                 user: null,
