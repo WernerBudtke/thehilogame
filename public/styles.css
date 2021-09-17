@@ -160,6 +160,12 @@ header, footer{
     html{
         font-size: 1.6vw;
     }
+    tbody{
+        font-size: 2rem;
+    }
+    #bodyOptions main div p{
+        font-size: 1.4rem;
+    }
 }
 @media screen and (max-width: 600px){
     html{
@@ -168,9 +174,21 @@ header, footer{
     .tries, .wins{
         display:none;
     }
+    tbody{
+        font-size: 1.5rem;
+    }
+    #bodyOptions main div p{
+        font-size: 1.4rem;
+    }
 }
 @media screen and (max-width: 400px){
     html{
         font-size: 2.3vw;
+    }
+    tbody{
+        font-size: 1.5rem;
+    }
+    #bodyOptions main div p{
+        font-size: 1.3rem;
     }
 }
