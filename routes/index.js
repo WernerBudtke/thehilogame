@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const viewsControllers = require('../controllers/viewsControllers')
 const userControllers = require('../controllers/userControllers')
+
 router.route('/')
 .get(viewsControllers.home)
 router.route('/register')

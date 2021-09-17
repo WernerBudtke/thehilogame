@@ -4,11 +4,7 @@
     <main>
         <div id="gameContainer">
             <div>
-                <% if (user) { %>
-                    <p id="numeral">#:<span id="rollNumber"><%= parseInt(user.roll) %></span></p>
-                <% } else { %>
-                    <p id="numeral">#:<span id="rollNumber">5000</span></p>
-                <% } %>
+                <p id="numeral">#:<span id="rollNumber"><%= user ? parseInt(user.roll) : 5000 %></span></p>
             </div>
             <div id="btnHolder">
                 <% if (user) { %>
@@ -18,7 +14,7 @@
                         <button id="btnHi">HIGHER</button>
                     </form>
                 <% } else { %>
-                    <button id="btnHi">HIGHER</button>
+                    <a href="/login"><button id="btnHi">HIGHER</button></a>
                 <% } %>
                 <p>-</p>
                 <% if(user){ %>
@@ -28,15 +24,11 @@
                         <button id="btnLo">LOWER</button>
                     </form>
                 <% }else{ %>
-                    <button id="btnLo">LOWER</button>
+                        <a href="/login"><button id="btnLo">LOWER</button></a>
                 <% } %>
             </div>
             <div>
-                <% if(user){ %>
-                    <p id="score">SCORE:<span><%= user.score %></span></p>
-                <% }else{ %>
-                    <p id="score">SCORE:<span>1000</span></p>
-                <% } %>
+                <p id="score">SCORE:<span><%= user ? user.score : 1000 %></span></p>
                 <% if (error) { %>
                     <p><%= error %></p>
                 <% } %>

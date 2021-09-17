@@ -21,7 +21,8 @@ app.use(session({
     saveUninitialized: false,
     store: store
 }))
-app.use('/', router)
+const urlControllers = require('./controllers/urlControllers')
+app.use('/', urlControllers.checkURL, router)
 
 const PORT = process.env.PORT || 4000
 const HOST = process.env.MYHOST || '0.0.0.0'
