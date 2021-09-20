@@ -132,9 +132,11 @@ header, footer{
 }
 #btnHi{
     background-color: greenyellow;
+    cursor: pointer;
 }
 #btnLo, #bodyOptions main div button:active{
     background-color: crimson;
+    cursor: pointer;
 }
 #btnHi:active{
     background-color: green;
@@ -150,6 +152,14 @@ header, footer{
 }
 .textRed, header nav a.active{
     color:crimson;
+}
+main form a{
+    color: goldenrod;
+    font-size: 1rem;
+}
+#accCreatedSuccess{
+    text-align: center;
+    font-size: 1rem;
 }
 @media screen and (max-width: 1024px){
     html{

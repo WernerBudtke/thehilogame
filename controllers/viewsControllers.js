@@ -33,7 +33,8 @@ const viewsControllers = {
                 title: 'Log In',
                 error: null,
                 user: null,
-                loggedIn: null
+                loggedIn: null,
+                userCreated: null
             })
         }
     },

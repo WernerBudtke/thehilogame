@@ -10,7 +10,13 @@ const userControllers = {
         })
         try{
             await newUser.save()
-            res.redirect('/login')
+            res.render('login', {
+                loggedIn: false,
+                user: null,
+                title: 'Log In',
+                error: null,
+                userCreated: true
+            })
         }catch(e){
             res.render('register', {
                 loggedIn: false,
