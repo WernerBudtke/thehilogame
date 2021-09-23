@@ -39,18 +39,33 @@ const viewsControllers = {
         }
     },
     highscore: async (req, res) => {
-        let highscores = await User.find().sort({highscore: -1}).limit(10)
+        let highscores  = []
         let loggedUser = null
         if(req.session.loggedUser){
             loggedUser=req.session.loggedUser  
         }
-        res.render('highscores',{
-            title: 'Highscores',
-            error: null,
-            highscores,
-            user:loggedUser,
-            loggedIn: req.session.loggedIn
-        })
+        try {
+            highscores = await User.findAll({
+                raw: true,
+                order: [['highscore', 'DESC']],
+                limit: 10
+            })
+            res.render('highscores',{
+                title: 'Highscores',
+                error: null,
+                highscores,
+                user:loggedUser,
+                loggedIn: req.session.loggedIn || null
+            })
+        }catch(e){
+            res.render('highscore',{
+                title: 'Highscores',
+                error: e.message,
+                highscores: [],
+                user:loggedUser,
+                loggedIn: req.session.loggedIn || null
+            })
+        }   
     },
     options: (req, res) => {
         if(!req.session.loggedIn){
@@ -64,7 +79,7 @@ const viewsControllers = {
                 title: 'Options',
                 error: null,
                 user:loggedUser,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn || null
             })
         }
     }

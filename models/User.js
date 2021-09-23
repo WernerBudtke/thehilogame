@@ -1,13 +1,44 @@
-const mongoose = require('mongoose')
+const Sequelize = require('sequelize')
+const database = require('../config/database')
 
-const userSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true, maxLength: 16},
-    password: {type: String, required: true, minlength: 4},
-    highscore: {type: Number, default: 0},
-    tries: {type: Number, default: 0},
-    wins: {type: Number, default: 0},
-    score: {type: Number, default: 0},
-    roll: {type: Number, default: 5000}
+const User = database.define('user', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    username: {
+        type: Sequelize.STRING(16),
+        unique: true,
+        allowNull: false,
+    },
+    password: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+        validate: {
+            len: [4, 255]
+        }
+    },
+    highscore: { 
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    tries: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    wins: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    score: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    roll: {
+        type: Sequelize.INTEGER,
+        defaultValue: 5000,
+    },
 })
-const User = mongoose.model('user', userSchema)
 module.exports = User

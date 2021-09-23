@@ -1,4 +1,6 @@
-const mongoose = require('mongoose')  
-mongoose.connect(process.env.MONGODB)
-.then(() => console.log("Database connected"))
-.catch(error => console.log(error))
+const Sequelize = require('sequelize')
+const database = new Sequelize('thehilogame','root','',{
+    host: 'localhost',
+    dialect: 'mysql'
+}) // bd, user, contrasena
+module.exports = database

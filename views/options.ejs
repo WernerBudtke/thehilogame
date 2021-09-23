@@ -4,7 +4,7 @@
     <main>
         <div>
             <p>Are you sure? :(</p>
-            <a href="/user/remove/<%= user._id %>"><button>DELETE ACC</button></a>
+            <a href="/user/remove/<%= user.id %>"><button>DELETE ACC</button></a>
             <% if (error) { %>
                 <p><%= error %></p>
             <% } %>

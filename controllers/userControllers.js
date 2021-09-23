@@ -4,12 +4,12 @@ const userControllers = {
     register: async (req, res)  => {
         const {username, password} = req.body
         let hashedPass = bcryptjs.hashSync(password)
-        let newUser = new User({
+        let newUser = {
             username,
             password: hashedPass
-        })
+        }
         try{
-            await newUser.save()
+            await User.create(newUser)
             res.render('login', {
                 loggedIn: false,
                 user: null,
@@ -30,14 +30,19 @@ const userControllers = {
         const {password, username} = req.body
         const errMsg = 'Invalid User or Password'
         try{
-            let userFound = await User.findOne({username: username})
+            let userFound = await User.findAll({
+                raw: true,
+                where: {
+                    username: username
+                }
+            })
             if(!userFound)throw new Error(errMsg)
-            if(!bcryptjs.compareSync(password, userFound.password))throw new Error(errMsg)
-            userFound.password = null
-            req.session.loggedUser = userFound
+            if(!bcryptjs.compareSync(password, userFound[0].password))throw new Error(errMsg)
+            userFound[0].password = null
+            req.session.loggedUser = userFound[0]
             req.session.loggedIn = true
             res.render('index', {
-                user: userFound,
+                user: userFound[0],
                 title: 'Home',
                 error: null,
                 loggedIn: true
@@ -47,6 +52,7 @@ const userControllers = {
                 title: 'Log In',
                 error: e.message,
                 user: null,
+                userCreated: null,
                 loggedIn: false
             })
         }
@@ -54,23 +60,26 @@ const userControllers = {
     },
     removeUser: async (req, res) => {
         try{
-            await User.findOneAndDelete({_id: req.params.user})
+            let userFound = await User.findByPk(req.session.loggedUser.id)
+            await userFound.destroy()
             req.session.loggedUser = null
             req.session.loggedIn = null
-            res.redirect('/register')
+            req.session.destroy( () =>{
+                res.redirect('/register')
+            })    
         }catch(e){
             res.render('options', {
                 error: e.message,
-                user: req.session.loggedUser,
+                user: req.session.loggedUser || null,
                 title: 'Options',
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn || null
             })
         }
     },
     playGame: async (req, res) => {
         let user = await JSON.parse(req.body.user)
         const {whatToDo} = req.body
-        const {username, score, roll, highscore, wins, tries} = user
+        const {score, roll, highscore, wins, tries} = user
         let newRoll = Math.random() * 10000
         let newScore = score
         let newHighscore = highscore
@@ -88,10 +97,10 @@ const userControllers = {
         }   
         newTries++
         try{
-            let userFound = await User.findOneAndUpdate({username: username}, {roll: newRoll, score: newScore, tries: newTries, highscore: newHighscore, wins: newWins}, {new:true})
+            let userFound = await User.upsert({id: user.id, username: user.username, roll: newRoll, score: newScore, tries: newTries, highscore: newHighscore, wins: newWins})
+            console.log(userFound[0].dataValues)
             if(!userFound)throw new Error('User not found')
-            userFound.password = null
-            req.session.loggedUser = userFound
+            req.session.loggedUser = userFound[0].dataValues
             res.redirect('/')
         }catch(e){
             res.render('index', {
