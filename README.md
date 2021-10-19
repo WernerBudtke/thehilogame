@@ -37,6 +37,10 @@ Express
 * Github: [@WernerBudtke](https://github.com/WernerBudtke)
 * LinkedIn: [@https:\/\/www.linkedin.com\/in\/federico-werner-budtke-644362217\/](https://linkedin.com/in/https:\/\/www.linkedin.com\/in\/federico-werner-budtke-644362217\/)
 
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/WernerBudtke/thehilogame/issues).
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
