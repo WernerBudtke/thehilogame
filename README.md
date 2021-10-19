@@ -42,3 +42,7 @@ Express
 ## Show your support
 
 Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2021 [Federico Budtke](https://github.com/WernerBudtke).<br />
