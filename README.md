@@ -21,7 +21,16 @@ npm install
 ```sh
 For SQL, look at SQL branch. For MongoDB npm start
 ```
+## Technologies
 
+```sh
+EJS
+Sessions
+Node.JS
+SQL (on sql branch) / Sequelize
+MongoDB / Mongoose
+Express
+```
 ## Author
 
 👤 **Federico Budtke**
@@ -32,6 +41,3 @@ For SQL, look at SQL branch. For MongoDB npm start
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
