@@ -20,6 +20,7 @@ npm install
 
 ```sh
 For SQL, look at SQL branch. For MongoDB npm start
+You have to set up your own .env
 ```
 ## Technologies
 
