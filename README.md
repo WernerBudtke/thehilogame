@@ -29,6 +29,7 @@ EJS
 Sessions
 Node.JS
 SQL (on sql branch) / Sequelize
+Joi
 MongoDB / Mongoose
 Express
 ```
