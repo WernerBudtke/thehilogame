@@ -14,20 +14,29 @@ const viewsControllers = {
         })
     },
     register: (req, res)  => {
-        res.render('register', {
-            title: 'Register',
-            error: null,
-            user: null,
-            loggedIn: req.session.loggedIn
-        })
+        if(req.session.loggedIn){
+            res.redirect('/')
+        }else{
+            res.render('register', {
+                title: 'Register',
+                error: null,
+                user: null,
+                loggedIn: null
+            })
+        }
     },
     login: (req, res) => {
-        res.render('login', {
-            title: 'Log In',
-            error: null,
-            user: null,
-            loggedIn: req.session.loggedIn
-        })
+        if(req.session.loggedIn){
+            res.redirect('/')
+        }else{
+            res.render('login', {
+                title: 'Log In',
+                error: null,
+                user: null,
+                loggedIn: null,
+                userCreated: null
+            })
+        }
     },
     highscore: async (req, res) => {
         let highscores = await User.find().sort({highscore: -1}).limit(10)
@@ -44,16 +53,20 @@ const viewsControllers = {
         })
     },
     options: (req, res) => {
-        let loggedUser = null
-        if(req.session.loggedUser){
-            loggedUser=req.session.loggedUser  
+        if(!req.session.loggedIn){
+            res.redirect('/login')
+        }else{
+            let loggedUser = null
+            if(req.session.loggedUser){
+                loggedUser=req.session.loggedUser  
+            }
+            res.render('options',{
+                title: 'Options',
+                error: null,
+                user:loggedUser,
+                loggedIn: req.session.loggedIn
+            })
         }
-        res.render('options',{
-            title: 'Options',
-            error: null,
-            user:loggedUser,
-            loggedIn: req.session.loggedIn
-        })
     }
 }
 module.exports = viewsControllers

@@ -5,13 +5,14 @@
         <form action="/register" method="POST">
             <div>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
+                <input type="text" id="username" name="username" minlength="2" maxlength="16" required>
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" minlength="4" required>
             </div>
             <button type="submit">REGISTER</button>
+            <a href="/login">Already have an account? Log In!</a>
             <% if (error) { %>
                 <p><%= error %></p>
             <% } %>

@@ -10,7 +10,13 @@ const userControllers = {
         })
         try{
             await newUser.save()
-            res.redirect('login')
+            res.render('login', {
+                loggedIn: false,
+                user: null,
+                title: 'Log In',
+                error: null,
+                userCreated: true
+            })
         }catch(e){
             res.render('register', {
                 loggedIn: false,
@@ -70,39 +76,23 @@ const userControllers = {
         let newHighscore = highscore
         let newWins = wins
         let newTries = tries
-        if(whatToDo === 'higher'){
-            if(roll < newRoll){
-                newScore++
-                newWins++
-                if(newScore > highscore){
-                    newHighscore = newScore
-                }
-            }else{
-                newScore = 0
-            }   
-        }else{
-            if(roll > newRoll){
-                newScore++
-                newWins++
-                if(newScore > highscore){
-                    newHighscore = newScore
-                }
-            }else{
-                newScore = 0
+        let myCondition = whatToDo === 'higher' ? roll < newRoll : roll > newRoll
+        if(myCondition){
+            newScore++
+            newWins++
+            if(newScore > highscore){
+                newHighscore = newScore
             }
-        }
+        }else{
+            newScore = 0
+        }   
         newTries++
         try{
             let userFound = await User.findOneAndUpdate({username: username}, {roll: newRoll, score: newScore, tries: newTries, highscore: newHighscore, wins: newWins}, {new:true})
             if(!userFound)throw new Error('User not found')
             userFound.password = null
             req.session.loggedUser = userFound
-            res.render('index', {
-                user: userFound,
-                title: 'Home',
-                error: null,
-                loggedIn : true
-            })
+            res.redirect('/')
         }catch(e){
             res.render('index', {
                 user: null,

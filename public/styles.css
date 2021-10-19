@@ -24,50 +24,26 @@ footer, header nav, header div{
     justify-content: space-evenly;
 }
 footer{
-    background-color: rgba(76, 0, 255, 0.75);
     align-items: center;
     padding-top: 0.5rem;
     padding-bottom: 0.2rem;
-    color:white;
 }
 header{
     padding-top: 1rem;
-    background-color: rgba(76, 0, 255, 0.75);
     justify-content: space-between;
     gap:1rem;
-    color:white;
 }
 header nav a{
     text-decoration: none;
-    color:greenyellow;
 }
 header nav a:hover{
     text-decoration: underline;
 }
-header nav a.active{
-    color:crimson;
-}
-header div h1{
-    font-size: 3rem;
-}
-header div p{
+header div p, header nav, footer p{
     font-size: 1rem;
-}
-header nav{
-    font-size: 1rem;
-}
-footer p{
-    font-size: 1rem;
-}
-.textGreen{
-    color:greenyellow;
-}
-.textRed{
-    color:crimson;
 }
 .userInfo{
     font-style: italic;
-    color: goldenrod;
 }
 /* INDEX STUFF */
 #bodyHome main, #gameContainer{
@@ -78,40 +54,17 @@ footer p{
     justify-content: space-evenly;
     width: 50%;
     height: 50vh;
-    color: white;
 }
 #gameContainer div{
     justify-content: space-evenly;
     width: 100%;
-    font-size: 3rem;
 }
 #gameContainer div button{
     font-size: 2rem;
     padding: 1rem;
 }
-#score, #numeral{
-    color:goldenrod;
-}
-#score span, #numeral span{
-    color:white;
-}
 #btnHolder{
     align-items: center;
-}
-#btnHi{
-    background-color: greenyellow;
-}
-#btnLo{
-    background-color: crimson;
-}
-#btnHi:active, #btnLo:active{
-    color:white;
-}
-#btnHi:active{
-    background-color: green;
-}
-#btnLo:active{
-    background-color: red;
 }
 
 /* HIGHSCORE STYLES */
@@ -125,11 +78,9 @@ footer p{
 }
 table{
     text-align: center;
-    color: greenyellow;
 }
-thead{
+thead, #gameContainer div, header div h1{
     font-size: 3rem;
-    color: goldenrod;
 }
 th{
     padding-bottom: 1rem;
@@ -138,28 +89,19 @@ td{
     padding: 0 1.5rem;
     padding-bottom: 0.5rem;
 }
-tbody{
-    font-size: 2rem;
-}
-
 /* LOGIN Y REGISTER */
-#bodyLogin main, #bodyRegister main{
+#bodyLogin main, #bodyRegister main, #bodyLogin form, #bodyRegister form, #bodyOptions main, main div{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 #bodyLogin form, #bodyRegister form{
-    /* background-color: whitesmoke; */
-    display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-evenly;
     width: 50%;
     height: 25rem;
-    font-size: 1.5rem;
-    color:white;
 }
-#bodyLogin form input, #bodyRegister form input, #bodyLogin form button, #bodyRegister form button{
+#bodyLogin form input, #bodyRegister form input, #bodyLogin form button, #bodyRegister form button, #bodyLogin form, #bodyRegister form{
     font-size: 1.5rem;
 }
 #bodyLogin form button, #bodyRegister form button{
@@ -167,27 +109,96 @@ tbody{
     padding: 1rem;
 }
 /* OPTIONS PAGE */
-#bodyOptions main, main div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 #bodyOptions main div{
     width: 50%;
     height: 25rem;
     flex-direction: column; 
 }
-#bodyOptions main div p{
-    color: white;
+#bodyOptions main div p, #bodyOptions main div button, tbody{
     font-size: 2rem;
+}
+#bodyOptions main div p{
     margin-bottom: 1rem;
 }
 #bodyOptions main div button{
-    background-color: red;
     padding: 1rem;
-    font-size: 2rem;
 }
-#bodyOptions main div button:active{
+/* COLORS */
+#bodyOptions main div button:active, #bodyOptions main div p, #bodyLogin form, #bodyRegister form, #btnHi:active, #btnLo:active, #score span, #numeral span, #gameContainer, header, footer{
+    color:white; 
+}
+header, footer{
+    background-color: rgba(76, 0, 255, 0.75);
+}
+#btnHi{
+    background-color: greenyellow;
+    cursor: pointer;
+}
+#btnLo, #bodyOptions main div button:active{
     background-color: crimson;
-    color:white;
+    cursor: pointer;
+}
+#btnHi:active{
+    background-color: green;
+}
+#btnLo:active, #bodyOptions main div button{
+    background-color: red;
+}
+#score, #numeral, thead, .userInfo{
+    color:goldenrod;
+}
+.textGreen, table, header nav a{
+    color:greenyellow;
+}
+.textRed, header nav a.active{
+    color:crimson;
+}
+main form a{
+    color: goldenrod;
+    font-size: 1rem;
+}
+#accCreatedSuccess{
+    text-align: center;
+    font-size: 1rem;
+}
+@media screen and (max-width: 1024px){
+    html{
+        font-size: 1.5vw;
+    }
+}
+@media screen and (max-width: 900px){
+    html{
+        font-size: 1.6vw;
+    }
+    tbody{
+        font-size: 2rem;
+    }
+    #bodyOptions main div p{
+        font-size: 1.4rem;
+    }
+}
+@media screen and (max-width: 600px){
+    html{
+        font-size: 2.2vw;
+    }
+    .tries, .wins{
+        display:none;
+    }
+    tbody{
+        font-size: 1.5rem;
+    }
+    #bodyOptions main div p{
+        font-size: 1.4rem;
+    }
+}
+@media screen and (max-width: 400px){
+    html{
+        font-size: 2.3vw;
+    }
+    tbody{
+        font-size: 1.5rem;
+    }
+    #bodyOptions main div p{
+        font-size: 1.3rem;
+    }
 }
